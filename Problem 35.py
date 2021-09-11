@@ -4,83 +4,30 @@ def is_prime(num):
 	a = all(num % i for i in range(2, num))
 	return a
 
-def convertTuple(tup):
-    str1 = ''
-    for item in tup:
-        str1 = str1 + item
-    return str1
+def combinations(num):
+	a = list(permutations(num))
+	b = [int(''.join(map(str, x))) for x in a]
+	c = [i for i in b if all(list(map(is_prime, b))) == True]
 
-def prime_filter(nums):
-	print("Started prime filter")
+	return c
+
+def get_length(combinations):
+	b = [i for x in combinations for i in x]
 	final = []
-	for n in nums:
-		if len(str(n)) == 1:
-			final.append(n)
-		if len(str(n)) == 2:
-			a = list(permutations(str(n)))
-			a_list = []
-			for i in a:
-				a = convertTuple(i)
-				a_list.append(a)
-			b = all(is_prime(int(i)) for i in a_list)
-			if b == True:
-				final.append(a)
-
-			else:
-				pass
-
-		if len(str(n)) == 3:
-			a = list(permutations(str(n)))
-			a_list = []
-			for i in a:
-				a = convertTuple(i)
-				a_list.append(a)
-			b = all(is_prime(int(i)) for i in a_list)
-			if b == True:
-				final.append(a)
-
-			else:
-				pass
-
-		if len(str(n)) == 4:
-			a = list(permutations(str(n)))
-			a_list = []
-			for i in a:
-				a = convertTuple(i)
-				a_list.append(a)
-			b = all(is_prime(int(i)) for i in a_list)
-			if b == True:
-				final.append(a)
-
-			else:
-				pass
-
-		if len(str(n)) == 5:
-			a = list(permutations(str(n)))
-			a_list = []
-			for i in a:
-				a = convertTuple(i)
-				a_list.append(a)
-			b = all(is_prime(int(i)) for i in a_list)
-			if b == True:
-				final.append(a)
-
-			else:
-				pass
+	for i in b:
+		if i not in final:
+			final.append(i)
 
 	print(len(final))
-	print(final)
 
-primes = []
+def start(nums):
+	a = []
+	for n in nums:
+		if len(combinations(n)) > 0:
+			a.append(combinations(n))
 
-for i in range(2, 10001):
-	a = is_prime(i)
-	if a == True:
-		primes.append(i)
+	get_length(a)
 
-	else:
-		pass
-
-print("Finished generating prime numbers")
-
-prime_filter(primes)
+primes = [str(x) for x in range(2, 1000001) if is_prime(x) == True]
+print("Started")
+start(primes)
