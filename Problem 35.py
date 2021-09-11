@@ -29,5 +29,4 @@ def start(nums):
 	get_length(a)
 
 primes = [str(x) for x in range(2, 1000001) if is_prime(x) == True]
-print("Started")
 start(primes)
