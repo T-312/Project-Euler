@@ -2,7 +2,7 @@ def is_prime(num):
         a = all(num % i for i in range(2, num))
         return a
 
-def primes(n):
+def primes(n): #This function was borrowed - more optimised version of prime number generator
     sieve = [True] * n
     for i in range(3,int(n**0.5)+1,2):
         if sieve[i]:
