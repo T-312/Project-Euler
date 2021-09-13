@@ -1,19 +1,25 @@
-nums = [x for x in range(0, 1000001) if x != 1 and x % 2 != 0]
-final = []
-nums.insert(0, 2)
+import math
+import random
 
-def rem_num(n):
-    for i in nums:
-        if i > n and i % n == 0:
-            nums.remove(i)
-rem_num(3)
-rem_num(5)
-rem_num(7)
+def random_prime(left, right):
+  if min(left, right) <= 0:
+    raise RuntimeError('Only natural numbers')
+  prime_nums = []
+  for i in range(left, right):
+    if is_prime(i):
+      prime_nums.append(i)
+  return prime_nums
 
-for i in nums:
-    final.append(str(i))
-    final.append('+')
 
-final.pop()
-final_sum = eval(''.join(final))
-print(final_sum)
+def is_prime(num):
+  if num <= 2: # 1 and 2 are primes, <= 0 not allowed
+    return True
+  if not num % 2:
+    return False
+  for i in range(3, int(math.sqrt(num)) + 1, 2):
+    if not num % i  and num != i:
+      return False
+  return True
+
+nums = random_prime(1, 2000000)
+print(sum(nums))
