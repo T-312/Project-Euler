@@ -1,7 +1,10 @@
+from itertools import permutations
+
 def formula(n):
 	return n*(3*n-1)/2
 
-a = list(range(1, 11))
-pentagonal_nums = list(map(formula, a))
+def check_sum(nums):
+	return [str(int(a))+str(int(b)) for a in nums for b in nums if a+b in nums]
 
-print(pentagonal_nums)
+pent_nums = list(map(formula, range(1, 100)))
+print(check_sum(pent_nums))
