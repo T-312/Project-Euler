@@ -1,3 +1,7 @@
+def is_prime(num):
+	a = all(num % i for i in range(2, num))
+	return a
+
 def gen_primes(num):
 	if num <= 1:
 		return "Number must be positive"
@@ -10,17 +14,20 @@ def gen_primes(num):
 			primes.append(n)
 
 	primes = sorted(list(set(primes)))
-	primes.pop(0)
+	primes.remove(primes[0])
 	return primes
 
-largest_sum = 0
-limit = 400
+limit = 1000
+length = 0
+value = 0
 nums = gen_primes(limit)
 
-for i in range(limit):
-	a = sum(nums[:i])
-	if a > largest_sum and a in nums:
-		largest_sum = sum(nums[:i])
-		print(nums[:i])
+for a in range(limit):
+	for b in range(limit):
+		x = nums[a:b]
+		if len(x) > length and sum(x) < limit and is_prime(sum(x)):
+			length = len(x)
+			value = sum(x)
 
-print(largest_sum)
+print(value)
+print("Length:", length)
