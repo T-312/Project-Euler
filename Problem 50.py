@@ -17,17 +17,18 @@ def gen_primes(num):
 	primes.remove(primes[0])
 	return primes
 
-limit = 1000
+limit = 1000000
 length = 0
 value = 0
 nums = gen_primes(limit)
 
-for a in range(limit):
-	for b in range(limit):
+for a in range(len(nums)+1):
+	for b in range(len(nums)+1):
 		x = nums[a:b]
 		if len(x) > length and sum(x) < limit and is_prime(sum(x)):
 			length = len(x)
 			value = sum(x)
+			print(value)
 
 print(value)
 print("Length:", length)
