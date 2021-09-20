@@ -1,3 +1,4 @@
+import time
 def is_prime(num):
 	a = all(num % i for i in range(2, num))
 	return a
@@ -17,18 +18,23 @@ def gen_primes(num):
 	primes.remove(primes[0])
 	return primes
 
-limit = 1000000
+start = time.time()
+limit = 100
 length = 0
 value = 0
 nums = gen_primes(limit)
 
-for a in range(len(nums)+1):
-	for b in range(len(nums)+1):
+for a in range(len(nums)):
+	for b in range(1, len(nums)):
 		x = nums[a:b]
 		if len(x) > length and sum(x) < limit and is_prime(sum(x)):
 			length = len(x)
 			value = sum(x)
 			print(value)
+			for i in range(int(limit/1000)):
+				nums.pop()
 
+stop = time.time()
 print(value)
 print("Length:", length)
+print("Time:", round(stop-start, 2))
