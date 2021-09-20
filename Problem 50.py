@@ -14,13 +14,13 @@ def gen_primes(num):
 	return primes
 
 largest_sum = 0
-limit = 400
+limit = 1000
 nums = gen_primes(limit)
+sums = []
+final = []
 
-for i in range(limit):
-	a = sum(nums[:i])
-	if a > largest_sum and a in nums:
-		largest_sum = sum(nums[:i])
-		print(nums[:i])
-
-print(largest_sum)
+for n in nums:
+	sums.append(n)
+	if sum(sums) in nums:
+		final.append(sum(sums))
+print(final)
