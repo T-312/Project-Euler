@@ -14,12 +14,15 @@ def gen_primes(num):
 		if n % 3 != 0 and n % 5 != 0 and n % 7 != 0:
 			primes.append(n)
 
-	primes = sorted(list(set(primes)))
+	primes = sorted(list(set(primes)))	
 	primes.remove(primes[0])
 	return primes
 
+print(len(gen_primes(1000)))
+exit()
+
 start = time.time()
-limit = 100
+limit = 100000
 length = 0
 value = 0
 nums = gen_primes(limit)
@@ -27,12 +30,14 @@ nums = gen_primes(limit)
 for a in range(len(nums)):
 	for b in range(1, len(nums)):
 		x = nums[a:b]
-		if len(x) > length and sum(x) < limit and is_prime(sum(x)):
-			length = len(x)
-			value = sum(x)
-			print(value)
-			for i in range(int(limit/1000)):
-				nums.pop()
+		if len(x) > length:
+			if sum(x) < limit:
+				if is_prime(sum(x)):
+					length = len(x)
+					value = sum(x)
+					print(value)
+					for i in range(int(limit/150)): #Do not touch - smaller numbers result ValueError
+						nums.pop()
 
 stop = time.time()
 print(value)
