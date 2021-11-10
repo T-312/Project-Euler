@@ -18,11 +18,8 @@ def gen_primes(num):
 	primes.remove(primes[0])
 	return primes
 
-print(len(gen_primes(1000)))
-exit()
-
 start = time.time()
-limit = 100000
+limit = 1000
 length = 0
 value = 0
 nums = gen_primes(limit)
