@@ -1,31 +1,10 @@
-import math
+# Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
 
-def is_prime(num):
-    for n in range(2, int(math.sqrt(num))+1):
-        if not num % n:
-            return False
-    return True
+# For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
 
-def gen_primes(max_num):
-    for i in range(1, max_num, 2):
-        if is_prime(i):
-            yield i
- 
-def gen_list(primes, max_val):
-    max_length = 0
-    max_sum = 0
-
-    for a in range(len(primes)):
-        for b in range(a+max_length, max_val):
-            current = primes[a:b]
-            if sum(current) in primes:
-                if len(current) > max_length and sum(current) > max_sum:
-                    max_length = len(current)
-                    max_sum = sum(current)
-                    print(max_sum)
- 
-    return max_sum
- 
-num = 100
-primes = [i for i in gen_primes(num)]
-print(gen_list(primes, num))
+def func(nums, k):
+    for a in nums:
+        for b in nums:
+            if a+b == k:
+                return (a, b)
+print(func([10, 15, 3, 7], 17))
